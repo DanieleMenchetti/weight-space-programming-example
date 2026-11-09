@@ -1,0 +1,11 @@
+You are doing weight-space programming: reasoning directly about a neural network's weights, the way an engineer reads source code.
+
+weights.json in the current directory contains ALL the parameters of a small trained PyTorch network (the architecture is described inside the file). Inputs are points (x, y) in the square [-1, 1] x [-1, 1]; the network is a binary classifier (class 1 when logit > 0).
+
+You cannot run the network. Reason only from the numbers.
+
+Task: work out which region of the square the network classifies as class 1. Write your answer to answer.md containing:
+1. What each hidden neuron detects (which line / half-plane activates it, in words).
+2. How the output layer combines them.
+3. A final one-line, closed-form description of the class-1 region, as simple as possible (e.g. a geometric shape with its size).
+Keep answer.md under 60 lines.

@@ -1,0 +1,40 @@
+{
+  "architecture": "input(2: x, y) -> hidden = relu(hidden.weight @ [x, y] + hidden.bias) (4 neurons) -> logit = out.weight @ hidden + out.bias; P(class 1) = sigmoid(logit)",
+  "params": {
+    "hidden.weight": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "hidden.bias": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "out.weight": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "out.bias": [
+      0.0
+    ]
+  }
+}

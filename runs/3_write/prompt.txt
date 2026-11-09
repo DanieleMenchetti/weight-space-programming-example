@@ -1,0 +1,13 @@
+You are doing weight-space programming: writing a neural network's weights by hand, like writing source code. No training of any kind.
+
+template.json in the current directory is an all-zero network: 2 inputs (x, y) -> 4 hidden ReLU neurons -> 1 output logit (architecture described inside the file).
+
+Spec: for every point (x, y) in [-1, 1] x [-1, 1], the logit must be > 0 when x*y > 0 (first and third quadrant) and < 0 when x*y < 0 (second and fourth quadrant). The decision boundary should coincide with the two axes as exactly as possible.
+
+Rules:
+- No training, no optimizer, no scripts of your own: design the weights by reasoning.
+- You may check a weights file with:  python forward.py <weights_file> "x1,y1 x2,y2 ..."  (run it as a single standalone command; budget: 5 calls in total).
+
+Deliverables:
+- written.json: your network, same format and shapes as template.json.
+- notes.md (under 20 lines): what each hidden neuron computes and why the output is correct.

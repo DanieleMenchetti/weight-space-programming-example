@@ -1,0 +1,103 @@
+{
+  "duration_api_ms": 23677,
+  "stop_reason": "end_turn",
+  "session_id": "957457b2-0a86-4a19-94cb-dcf5692338af",
+  "total_cost_usd": 0.1254456,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 9099,
+    "cache_read_input_tokens": 44268,
+    "output_tokens": 2188,
+    "output_tokens_details": {
+      "thinking_tokens": 282
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 9099,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 453,
+        "cache_read_input_tokens": 12553,
+        "cache_creation_input_tokens": 688,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 688
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 10,
+      "outputTokens": 2188,
+      "cacheReadInputTokens": 44268,
+      "cacheCreationInputTokens": 9099,
+      "webSearchRequests": 0,
+      "costUSD": 0.1254456,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 282,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 9099,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I wrote the network by hand and wrote the notes. One `forward.py` check on 20 points (1 of the 5 allowed calls) gave every logit the right sign.\n\n**The weights (`written.json`):**\n- **Hidden neurons:** h1 = relu(x+y), h2 = relu(\u2212x\u2212y), h3 = relu(x\u2212y), h4 = relu(\u2212x+y). All biases are 0.\n- **Output:** weights [1, 1, \u22121, \u22121] with bias 0, so logit = |x+y| \u2212 |x\u2212y|.\n\n**Why it's correct:** |a| \u2212 |b| always has the same sign as a\u00b2 \u2212 b\u00b2, and (x+y)\u00b2 \u2212 (x\u2212y)\u00b2 = 4xy. So the logit's sign equals the sign of x\u00b7y for every point, not just inside [\u22121,1]\u00b2. Written out, logit = 2\u00b7sign(xy)\u00b7min(|x|,|y|).\n\nThat makes the decision boundary exactly the two axes, with no approximation. Points on the axes give a logit of exactly 0, which the spec allows since x\u00b7y = 0 there.\n\n**The check:** I tested the corners, quadrant centres, points very close to the axes like (\u00b10.01, 0.9) and (0.001, \u22121), and points on the axes. The near-axis points came out at \u00b10.02 and \u00b10.002, and the on-axis points at exactly 0.\n\nThe explanation is in `notes.md`, under 20 lines.",
+  "ttft_ms": 2625,
+  "type": "result",
+  "duration_ms": 25759,
+  "uuid": "85258abd-c00c-4128-a0ae-2746406cfb75",
+  "ttft_stream_ms": 1701,
+  "time_to_request_ms": 250,
+  "first_content_frame_ms": 1702,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "credential_expires_at": "2026-11-30T00:10:56.008Z",
+  "forward_calls_used": 1
+}

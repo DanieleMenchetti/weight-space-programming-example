@@ -1,0 +1,26 @@
+You are doing weight-space programming: debugging a neural network by reading and editing its weights directly, like source code.
+
+weights.json in the current directory contains ALL the parameters of a small PyTorch binary classifier (architecture described inside the file). It was trained to output class 1 (logit > 0) exactly for points (x, y) in [-1, 1] x [-1, 1] with |x| + |y| < 0.8 (a diamond centred at the origin), and class 0 elsewhere.
+
+After training, the weights were corrupted and the network now misclassifies part of the square. Bug report - some inputs it currently gets wrong:
+  (x=-0.94, y=+0.60) should be class 0 but the network says class 1
+  (x=-0.37, y=-0.60) should be class 0 but the network says class 1
+  (x=-0.98, y=+0.62) should be class 0 but the network says class 1
+  (x=-0.95, y=-0.48) should be class 0 but the network says class 1
+  (x=-0.53, y=+0.51) should be class 0 but the network says class 1
+  (x=-0.53, y=+0.29) should be class 0 but the network says class 1
+  (x=-0.96, y=-0.48) should be class 0 but the network says class 1
+  (x=-0.65, y=+0.65) should be class 0 but the network says class 1
+
+Your job: find the fault by reading the weights and fix it by editing the numbers directly.
+Rules:
+- No training, no gradient descent, no optimizer, no scripts of your own. Reason about the weights.
+- Create and edit files only with your Write tool. The shell is locked down: the ONLY command it accepts is
+  python forward.py <weights_file> "x1,y1 x2,y2 ..."
+  run on its own (no sed, no pipes, no && / ; chaining - any other command is rejected).
+  forward.py prints hidden activations, logit and P(class 1) for up to 32 points per call. Budget: 10 calls in total. Use them wisely.
+- Change as few numbers as possible.
+
+Deliverables:
+- repaired.json: the repaired network, same format as weights.json.
+- notes.md (under 30 lines): which weight(s) you believe were corrupted, how you found them, and why your fix is correct.
